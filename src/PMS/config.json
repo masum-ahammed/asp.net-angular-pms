@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "PMS"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-PMS-bf950a00-b81d-4421-b911-34d5e3e3159d;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}

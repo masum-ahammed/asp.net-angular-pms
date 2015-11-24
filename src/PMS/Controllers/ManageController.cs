@@ -16,14 +16,14 @@ namespace PMS.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<PmsUser> _userManager;
+        private readonly SignInManager<PmsUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
 
         public ManageController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<PmsUser> userManager,
+            SignInManager<PmsUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender)
         {
@@ -352,7 +352,7 @@ namespace PMS.Controllers
             Error
         }
 
-        private async Task<ApplicationUser> GetCurrentUserAsync()
+        private async Task<PmsUser> GetCurrentUserAsync()
         {
             return await _userManager.FindByIdAsync(Context.User.GetUserId());
         }

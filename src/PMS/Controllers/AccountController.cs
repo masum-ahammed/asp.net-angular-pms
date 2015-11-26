@@ -103,7 +103,7 @@ namespace PMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            EnsureDatabaseCreated(_applicationDbContext);
+            //EnsureDatabaseCreated(_applicationDbContext);
             if (ModelState.IsValid)
             {
                 var user = new PmsUser { UserName = model.Email, Email = model.Email };

@@ -5,6 +5,7 @@ var gulp = require("gulp"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
     uglify = require("gulp-uglify"),
+    jshint = require('gulp-jshint');
     project = require("./project.json");
 
 var paths = {
@@ -42,4 +43,30 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("."));
 });
 
-gulp.task("min", ["min:js", "min:css"]);
+gulp.task('libs', function () {
+    gulp.src([
+     paths.webroot + 'lib/angular/angular.js',
+     paths.webroot + 'lib/angular-ui-router/release/angular-ui-router.js'
+     
+    ])
+   .pipe(concat('libs.js'))
+  // .pipe(uglify())
+   .pipe(gulp.dest(paths.webroot + 'js'));
+
+});
+
+/** Processes AngularJS code for concation and minify */
+gulp.task('angular', function () {
+    return gulp.src([paths.webroot + 'js/app/angular.app.js',
+                    paths.webroot + 'js/app/**/*.app.js',
+                    paths.webroot + 'js/app/client/*.service.js',
+                    paths.webroot + 'js/app/client/*.controller.js',
+                    paths.webroot+'js/app/client/*.directive.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    //.pipe(ngAnnotate())
+    .pipe(concat('app.js'))
+    //.pipe(uglify())
+    .pipe(gulp.dest(paths.webroot+'js'));
+});
+gulp.task("default", ["libs", "angular"]);

@@ -3,7 +3,7 @@
 
 angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
     function($locationProvider) {
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
     }
 ])
 .config(function($httpProvider){
@@ -16,7 +16,11 @@ angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$state.go('client');
+            console.log('bootstraping..');
         }
     ]);
+    angular.element(document).ready(function () {
+        angular.bootstrap(document, ["pms"]);
+    });
 
 })();

@@ -3,7 +3,7 @@
 
 angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
     function($locationProvider) {
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
     }
 ])
 .config(function($httpProvider){
@@ -16,8 +16,12 @@ angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$state.go('client');
+            console.log('bootstraping..');
         }
     ]);
+    angular.element(document).ready(function () {
+        angular.bootstrap(document, ["pms"]);
+    });
 
 })();
 (function () {
@@ -25,11 +29,13 @@ angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
 
     angular.module('pms.client', [])
         .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
             $stateProvider.state("client", {
+                url:'/',
                 controller: 'clientController',
                 controllerAs: 'vm',
-                templateUrl: "client.html",
-                template: "<ui-view/>"
+                templateUrl: "js/app/client/client.html"
+               
             });
         
 
@@ -48,7 +54,7 @@ angular.module('pms', ['ui.router','pms.client']).config(["$locationProvider",
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'clientController';
-
+        console.log('client controller');
         activate();
 
         function activate() { }

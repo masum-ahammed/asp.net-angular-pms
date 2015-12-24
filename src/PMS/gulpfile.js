@@ -57,6 +57,7 @@ gulp.task('libs', function () {
 
 /** Processes AngularJS code for concation and minify */
 gulp.task('angular', function () {
+
     return gulp.src([paths.webroot + 'js/app/angular.app.js',
                     paths.webroot + 'js/app/**/*.app.js',
                     paths.webroot + 'js/app/client/*.service.js',
